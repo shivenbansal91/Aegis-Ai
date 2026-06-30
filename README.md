@@ -37,17 +37,9 @@ When life happens and a day is missed, Aegis will automatically catch you up. It
 ### ❤️ Goal Health & Risk Intelligence
 Aegis calculates real-time "Completion Probability" and "Risk Scores" based on your daily consistency, remaining time, and task density. You'll know you're falling behind before it's too late.
 
-### 🧬 Deep Life Context (Coming Soon)
-Aegis integrates GitHub activity, LeetCode stats, and University semester constraints to ensure its plans are actually realistic given your real-world load.
-
 ---
 
-## 📸 Screenshots (Placeholders)
 
-> *(Insert GIF of the UI and goal generation here)*
-> *(Insert GIF of the adaptive replanning flow here)*
-
----
 
 ## 🏗️ Architecture & Tech Stack
 
