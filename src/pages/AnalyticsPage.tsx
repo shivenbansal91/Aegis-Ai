@@ -29,28 +29,6 @@ function MiniBarChart({ data, color = '#4f8ef7' }: { data: number[]; color?: str
   );
 }
 
-// ── Donut ring (SVG) ──────────────────────────────────────────
-
-function DonutRing({ pct, color, size = 80 }: { pct: number; color: string; size?: number }) {
-  const r = size / 2 - 8;
-  const circ = 2 * Math.PI * r;
-  const dash = (pct / 100) * circ;
-  return (
-    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
-      <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="7" />
-      <circle
-        cx={size / 2} cy={size / 2} r={r}
-        fill="none"
-        stroke={color}
-        strokeWidth="7"
-        strokeLinecap="round"
-        strokeDasharray={`${dash} ${circ}`}
-        strokeDashoffset={circ * 0.25}
-        style={{ transition: 'stroke-dasharray 0.6s ease' }}
-      />
-    </svg>
-  );
-}
 
 // ── Helpers ───────────────────────────────────────────────────
 

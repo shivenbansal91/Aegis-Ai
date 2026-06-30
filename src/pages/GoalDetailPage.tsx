@@ -277,7 +277,7 @@ export default function GoalDetailPage() {
                 </div>
               </div>
               <div className="gd-tasks">
-                {milestoneMap.get(undefined as any)!.map((task, tIdx) => (
+                {milestoneMap.get(undefined as any)!.map((task) => (
                   <button
                     key={task.id}
                     className={`gd-task ${task.status === 'completed' ? 'completed' : ''} ${updatingTask === task.id ? 'updating' : ''}`}

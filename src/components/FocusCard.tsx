@@ -4,7 +4,7 @@ import { useAuth } from '../hooks/useAuth';
 import { getUserGoals, getTodaysTasks } from '../lib/db';
 import { supabase } from '../lib/supabase';
 import { generateFocusBriefing } from '../lib/gemini';
-import type { Goal, Task } from '../types';
+
 
 // Cache focus briefing for 4 hours — don't regenerate on every visit
 const CACHE_TTL_MS = 4 * 60 * 60 * 1000;

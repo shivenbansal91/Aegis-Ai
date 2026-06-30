@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import type { Goal, Milestone, Task, AIPlan, LifeContext } from '../types';
+import type { Goal, Task, AIPlan, LifeContext } from '../types';
 
 // ── LIFE CONTEXT ────────────────────────────────────────────
 
@@ -26,16 +26,7 @@ export async function completeOnboarding(userId: string): Promise<void> {
 
 // ── SIMPLE TASK (no AI) ─────────────────────────────────────
 
-type TaskCategory = 'academic' | 'career' | 'projects' | 'personal' | 'habits';
 
-function inferCategory(title: string): TaskCategory {
-  const t = title.toLowerCase();
-  if (/leetcode|dsa|algorithm|data structure|competitive|codeforce|atcoder/i.test(t)) return 'career';
-  if (/assignment|exam|quiz|lecture|class|homework|dbms|os|cn |networks|college|semester/i.test(t)) return 'academic';
-  if (/project|build|deploy|feature|bug|implement|develop|startup/i.test(t)) return 'projects';
-  if (/water|sleep|exercise|gym|meditat|read|habit|journal/i.test(t)) return 'habits';
-  return 'personal';
-}
 
 export async function createSimpleTask(params: {
   userId: string;
@@ -44,7 +35,6 @@ export async function createSimpleTask(params: {
   dueDate?: string;
   priority?: string;
 }): Promise<string> {
-  const category = inferCategory(params.title);
 
   // Find if there's a related active goal to attach to
   const { data: goals } = await supabase

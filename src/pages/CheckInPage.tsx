@@ -7,7 +7,7 @@ import { analyzeCheckin, generateReplan } from '../lib/gemini';
 import { supabase } from '../lib/supabase';
 import { runVerifications, formatVerificationForPrompt } from '../lib/verify';
 import type { Goal, Task } from '../types';
-import type { VerificationResult } from '../lib/verify';
+
 
 type CheckinStep = 'select-goal' | 'tasks' | 'analyzing' | 'results';
 
@@ -37,7 +37,6 @@ export default function CheckInPage() {
   const [replanResult, setReplanResult] = React.useState<{ reason: string; changesSummary: string[]; impact: string } | null>(null);
   const [analyzing, setAnalyzing] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
-  const [verification, setVerification] = React.useState<VerificationResult | null>(null);
   const [verifyStatus, setVerifyStatus] = React.useState('');
 
   // Load goals
@@ -112,7 +111,6 @@ export default function CheckInPage() {
             githubUsername: profileData.github_username ?? undefined,
             leetcodeHandle: profileData.leetcode_handle ?? undefined,
           });
-          setVerification(verResult);
           verificationContext = formatVerificationForPrompt(verResult);
           setVerifyStatus('✅ Verification complete — sending to Gemini…');
         } else {
@@ -168,7 +166,7 @@ export default function CheckInPage() {
           .filter(t => partialIds.has(t.id) || blockedIds.has(t.id))
           .map(t => ({ id: t.id, title: t.title }));
 
-        const remainingTasksData = selectedGoal.tasks
+        const remainingTasksData = (selectedGoal.tasks || [])
           .filter(t => t.status === 'pending' && !completedIds.has(t.id) && !partialIds.has(t.id) && !blockedIds.has(t.id))
           .map(t => ({ id: t.id, title: t.title }));
 

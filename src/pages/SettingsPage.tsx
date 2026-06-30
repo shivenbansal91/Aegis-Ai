@@ -33,7 +33,7 @@ export default function SettingsPage() {
     preferred_work_start: 9,
     preferred_work_end: 21,
   });
-  const [loadingProfile, setLoadingProfile] = React.useState(true);
+
   const [saving, setSaving] = React.useState(false);
   const [saved, setSaved] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
@@ -87,7 +87,7 @@ export default function SettingsPage() {
           leetcode_handle: lifeCtx.leetcode_handle,
         });
       }
-      setLoadingProfile(false);
+
     });
   }, [user]);
 
